@@ -8,10 +8,18 @@ from .models import (
     )
 
 
+entry1 = {
+    'id': '7',
+    'title': 'ALL CATS',
+    'created': '3/14/16',
+}
+
+dict_list = [entry1, entry2, entry3]
+
 # templates/base.jinja2
-@view_config(route_name='home', renderer='string')
+@view_config(route_name='home', renderer='templates/list.jinja2')
 def list_view(request):
-    return 'This is the list view'
+    return 
 
 
 @view_config(route_name='entry', renderer='string')
