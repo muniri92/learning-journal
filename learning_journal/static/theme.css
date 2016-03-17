@@ -5,6 +5,21 @@ body {
   color: #ffffff;
   background: #bc2131;
 }
+
+nav, nav ul{
+  display: flex;
+  justify-content: center;
+}
+
+li a {
+  padding: 25px, 0px, 25px, 0px;
+}
+
+ul{
+  display: flex;
+  flex-direction: column; 
+  list-style: none;
+}
 h1,
 h2,
 h3,
