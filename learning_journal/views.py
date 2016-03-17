@@ -7,32 +7,14 @@ from .models import (
     Entry,
     )
 
-
-entry1 = {
-    'id': '7',
-    'title': 'ALL CATS',
-    'created': '3/14/16',
-}
-entry2 = {
-    'id': '2',
-    'title': 'ALL DOGS',
-    'created': '3/14/16',
-}
-
-entry3 = {
-    'id': '1',
-    'title': 'ALL STARFISH',
-    'created': '3/14/16',
-}
-
-dict_list = [entry1, entry2, entry3]
-
-# templates/base.jinja2
 @view_config(route_name='home', renderer='templates/list.jinja2')
 def list_view(request):
-    return {'dict': dict_list}
+    entries = DBSession.query(Entry).all()
+    return {'entries': entries}
 
 
-@view_config(route_name='entry', renderer='string')
+@view_config(route_name='entry', renderer='templates/entry.jinja2')
 def detail_view(request):
-    return 'You selected entry number: {entry}'.format(**request.matchdict)
+    this_id = '{entry}'.format(**request.matchdict)
+    this_entry = DBSession.query(Entry).filter(Entry.id == this_id).first()
+    return {'entry': this_entry}

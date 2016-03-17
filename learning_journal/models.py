@@ -28,4 +28,4 @@ class Entry(Base):
     text = Column(Unicode)
     created = Column(DateTime, default=datetime.datetime.utcnow)
 
-Index('entry', Entry.title, unique=True, mysql_length=255)
+Index('entries', Entry.title, unique=True, mysql_length=255)
