@@ -1,8 +1,10 @@
 {% extends "base.jinja2" %}
 {% block content %}
 <ul>
+    {% for entry in dict%}
     <li>
-       <a href='{{ id }}'>{{ title }}: {{ created }}</a>
+       <a href='{{ entry.id }}'>{{ entry.title }}: {{ entry.created }}</a>
     </li>
+    {% endfor %}
 </ul>
 {% endblock %}
