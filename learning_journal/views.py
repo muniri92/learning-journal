@@ -13,13 +13,24 @@ entry1 = {
     'title': 'ALL CATS',
     'created': '3/14/16',
 }
+entry2 = {
+    'id': '2',
+    'title': 'ALL DOGS',
+    'created': '3/14/16',
+}
+
+entry3 = {
+    'id': '1',
+    'title': 'ALL STARFISH',
+    'created': '3/14/16',
+}
 
 dict_list = [entry1, entry2, entry3]
 
 # templates/base.jinja2
 @view_config(route_name='home', renderer='templates/list.jinja2')
 def list_view(request):
-    return 
+    return {'dict': dict_list}
 
 
 @view_config(route_name='entry', renderer='string')
