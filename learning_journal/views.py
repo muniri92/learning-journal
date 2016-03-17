@@ -30,7 +30,8 @@ dict_list = [entry1, entry2, entry3]
 # templates/base.jinja2
 @view_config(route_name='home', renderer='templates/list.jinja2')
 def list_view(request):
-    return {'dict': dict_list}
+    entries = DBSession.query(Entry).all()
+    return {'dict': entries}
 
 
 @view_config(route_name='entry', renderer='string')
