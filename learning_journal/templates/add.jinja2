@@ -1,0 +1,14 @@
+{% extends "base.jinja2" %}
+{% block content %}
+
+{% for field in form %}
+
+<form method="POST">
+    <fieldset>
+        {{ field.label }}
+        {{ field }}
+    </fieldset>
+</form>
+	
+{% endfor %}
+{% endblock %}

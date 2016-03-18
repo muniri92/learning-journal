@@ -8,6 +8,8 @@ from sqlalchemy import (
     )
 import datetime
 
+from wtforms import Form, BooleanField, StringField, validators
+
 from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.orm import (
@@ -28,4 +30,8 @@ class Entry(Base):
     text = Column(Unicode)
     created = Column(DateTime, default=datetime.datetime.utcnow)
 
-Index('entries', Entry.title, unique=True, mysql_length=255)
+
+class NewEntry(Form):
+    title = StringField('Blog Title')
+    text = StringField('Text')
+
