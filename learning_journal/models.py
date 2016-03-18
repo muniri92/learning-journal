@@ -4,6 +4,7 @@ from sqlalchemy import (
     DateTime,
     Unicode,
 )
+
 import datetime
 
 from wtforms import Form, StringField, TextAreaField, validators
@@ -23,7 +24,6 @@ Base = declarative_base()
 
 class Entry(Base):
     """Create New Entry in Entries Table."""
-
     __tablename__ = 'entries'
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(120))
@@ -33,6 +33,5 @@ class Entry(Base):
 
 class NewEntry(Form):
     """Create Form for New Entry."""
-
     title = StringField('Title')
     text = TextAreaField('Text')

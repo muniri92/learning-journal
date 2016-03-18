@@ -21,7 +21,7 @@ requires = [
     'WTForms',
 ]
 
-tests_require = ['pytest', 'pytest-watch', 'tox']
+tests_require = ['pytest', 'pytest-watch', 'tox', 'webtest', 'pytest-cov']
 dev_requires = ['ipython', 'pyramid-ipython']
 
 setup(name='learning_journal',
