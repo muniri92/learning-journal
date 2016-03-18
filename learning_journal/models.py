@@ -1,21 +1,19 @@
 from sqlalchemy import (
     Column,
-    Index,
     Integer,
-    Text,
     DateTime,
     Unicode,
-    )
+)
 import datetime
 
-from wtforms import Form, BooleanField, StringField, validators
+from wtforms import Form, StringField, TextAreaField, validators
 
 from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
-    )
+)
 
 from zope.sqlalchemy import ZopeTransactionExtension
 
@@ -24,6 +22,8 @@ Base = declarative_base()
 
 
 class Entry(Base):
+    """Create New Entry in Entries Table."""
+
     __tablename__ = 'entries'
     id = Column(Integer, primary_key=True)
     title = Column(Unicode(120))
@@ -32,6 +32,7 @@ class Entry(Base):
 
 
 class NewEntry(Form):
-    title = StringField('Blog Title')
-    text = StringField('Text')
+    """Create Form for New Entry."""
 
+    title = StringField('Title')
+    text = TextAreaField('Text')

@@ -17,8 +17,9 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
-    'psycopg2'
-    ]
+    'psycopg2',
+    'WTForms',
+]
 
 tests_require = ['pytest', 'pytest-watch', 'tox']
 dev_requires = ['ipython', 'pyramid-ipython']

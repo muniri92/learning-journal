@@ -3,7 +3,10 @@
 <ul>
     {% for entry in entries%}
     <li>
-       <a href='/entry/{{ entry.id }}'>{{ entry.title }}: {{ entry.created }}</a>
+       <a href='/entry/{{ entry.id }}'>
+        <h3>{{ entry.title }}:</h3>
+        <p>{{ entry.created }}</p>
+       </a>
     </li>
     {% endfor %}
 </ul>
