@@ -17,7 +17,6 @@ def list_view(request):
 
 @view_config(route_name='entry', renderer='templates/entry.jinja2')
 def detail_view(request):
-    # this_id = '{}'.format(**request.matchdict)
     this_id = request.matchdict['entry']
     this_entry = DBSession.query(Entry).get(this_id)
     if this_entry is None:
