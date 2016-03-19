@@ -1,36 +1,48 @@
-from pyramid.response import Response
 from pyramid.view import view_config
-
-from sqlalchemy.exc import DBAPIError
-
+from wtforms import Form, BooleanField, StringField, validators
+import pyramid.httpexceptions as ex
+import transaction
 from .models import (
     DBSession,
-    MyModel,
-    )
+    Entry,
+    NewEntry,
+)
 
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
-def my_view(request):
-    try:
-        one = DBSession.query(MyModel).filter(MyModel.name == 'one').first()
-    except DBAPIError:
-        return Response(conn_err_msg, content_type='text/plain', status_int=500)
-    return {'one': one, 'project': 'learning_journal'}
+@view_config(route_name='home', renderer='templates/list.jinja2')
+def list_view(request):
+    entries = DBSession.query(Entry).order_by(Entry.created.desc()).all()
+    return {'entries': entries}
 
 
-conn_err_msg = """\
-Pyramid is having a problem using your SQL database.  The problem
-might be caused by one of the following things:
+@view_config(route_name='entry', renderer='templates/entry.jinja2')
+def detail_view(request):
+    this_id = request.matchdict['entry']
+    this_entry = DBSession.query(Entry).get(this_id)
+    if this_entry is None:
+        raise ex.HTTPNotFound()
+    return {'entry': this_entry}
 
-1.  You may need to run the "initialize_learning_journal_db" script
-    to initialize your database tables.  Check your virtual
-    environment's "bin" directory for this script and try to run it.
 
-2.  Your database server may not be running.  Check that the
-    database server referred to by the "sqlalchemy.url" setting in
-    your "development.ini" file is running.
+@view_config(route_name='add_entry', renderer='templates/add.jinja2')
+def add_new(request):
+    form = NewEntry(request.POST)
 
-After you fix the problem, please restart the Pyramid application to
-try it again.
-"""
+    if request.POST and form.validate():
+        entry = Entry(title=form.title.data, text=form.text.data)
+        DBSession.add(entry)
+        DBSession.flush()
+        return ex.HTTPFound(request.route_url('entry', entry=entry.id))
+    return {'form': form}
 
+
+@view_config(route_name="edit_entry", renderer="templates/edit.jinja2")
+def edit_existing(request):
+    post_id = request.matchdict['entry']
+    this_entry = DBSession.query(Entry).filter(Entry.id == post_id).first()
+    form = NewEntry(request.POST, this_entry)
+
+    if request.POST and form.validate():
+        form.populate_obj(this_entry)
+        return ex.HTTPFound(request.route_url('entry', entry=post_id))
+    return {'form': form}

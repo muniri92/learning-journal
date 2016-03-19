@@ -1,0 +1,17 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<ul>
+	{% if entries %}
+    {% for entry in entries%}
+    <li>
+       <a href='/entry/{{ entry.id }}'>
+        <h3>{{ entry.title }}:</h3>
+        <p>{{ entry.created }}</p>
+       </a>
+    </li>
+    {% endfor %}
+    {% else %}
+    <p>No entries here so far</p>
+    {% endif %}
+</ul>
+{% endblock %}
