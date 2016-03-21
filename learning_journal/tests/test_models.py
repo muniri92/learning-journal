@@ -1,3 +1,4 @@
+
 from learning_journal.models import Entry
 from learning_journal.models import DBSession
 
