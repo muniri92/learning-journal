@@ -7,7 +7,7 @@ import os
 
 
 user = os.environ.get('USER', 'seleniumk')
-TEST_DATABASE_URL = 'postgresql://{}:password@localhost:5432/learning_journal'.format(user)
+TEST_DATABASE_URL = 'postgresql://{}:password@localhost:5432/test_learning'.format(user)
 
 
 @pytest.fixture(scope='session')
