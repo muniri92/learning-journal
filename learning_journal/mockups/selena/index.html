@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header id="header" class="">
+            <nav>
+                <ul>
+                    <li><a href="index.html" title="Home">Home</a></li>
+                    <li><a href="new_entry.html" title="New Entry">New Entry</a></li>
+                </ul>
+            </nav>
+            <h1>VimPY</h1>    
+            <h2>Python, Vi, and other technical musings.</h2>
+        </header>
+        {% block content %}
+        <section>
+            <ul>
+                {% if entries %}
+                {% for entry in entries%}
+                <li>
+                   <a href='/entry/{{ entry.id }}'>
+                    <h3 class="entry-title">{{ entry.title }}:</h3>
+                    <p class="created">{{ entry.created }}</p>
+                   </a>
+                </li>
+                {% endfor %}
+                {% else %}
+                <p>No entries here yet!</p>
+                {% endif %}
+            </ul>
+        {% endblock content %}
+    </div>
+    <footer>
+        <a id=citation href='http://www.freepik.com/free-vector/green-abstract-background_774104.htm'>Designed by Freepik</a>
+    </footer>
+    
+</body>
+</html>

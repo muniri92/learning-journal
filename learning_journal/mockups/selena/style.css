@@ -1,0 +1,79 @@
+/*rReset*/
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/*Default Element Styling*/
+
+
+body{
+    background: green;
+    background: url('greenbackground.jpg') no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+li{
+    list-style: none;
+    padding: 2%;
+    margin: 3%;
+}
+
+a {
+    text-decoration: none;
+    color: #474747;
+}
+
+.container{
+    background: rgba(211, 211, 211, .5);
+    margin: auto;
+    margin-top: 4%;
+    width: 60%;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Header*/
+header, nav{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    height: 30vh;
+    flex-direction: column;
+    margin: 3.5% 0;
+}
+
+header h2 {
+    margin: 2%;
+}
+
+nav ul{
+    width: 50%;
+    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+nav li{
+    display: inline-block;
+}
+
+/*body*/
+
+.created {
+    font-style: oblique;
+}
+
+/*footer*/
+#citation {
+    font-size: .3em;
+}
+
+
