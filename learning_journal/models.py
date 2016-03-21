@@ -3,7 +3,12 @@ from sqlalchemy import (
     Index,
     Integer,
     Text,
+    DateTime,
+    Unicode,
     )
+import datetime
+
+from wtforms import Form, BooleanField, StringField, validators
 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -18,10 +23,15 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 
-class MyModel(Base):
-    __tablename__ = 'models'
+class Entry(Base):
+    __tablename__ = 'entries'
     id = Column(Integer, primary_key=True)
-    name = Column(Text)
-    value = Column(Integer)
+    title = Column(Unicode(120))
+    text = Column(Unicode)
+    created = Column(DateTime, default=datetime.datetime.utcnow)
 
-Index('my_index', MyModel.name, unique=True, mysql_length=255)
+
+class NewEntry(Form):
+    title = StringField('Blog Title')
+    text = StringField('Text')
+
