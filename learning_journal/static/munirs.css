@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	min-height: 100%;
+	flex-direction: column;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+}
+
+.title {
+	font-size: 30px;
+	justify-content: center;
+}
+
+.nav {
+	display: flex;
+	font-size: 15px;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.footer {
+	/*http://stackoverflow.com/questions/643879/css-to-make-html-page-footer-stay-at-bottom-of-the-page-with-a-minimum-height*/
+	clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+}

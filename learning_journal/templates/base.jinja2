@@ -7,8 +7,18 @@
     <link rel="stylesheet" href="../static/theme.css">
 </head>
 <body>
+
+      <aside>
+        <ul>
+        {% block body %}
+            <li><a href="{{ request.route_url('login') }}">Log In</a></li>
+            <li><a href="{{ request.route_url('logout') }}">Logout</a></li>
+        {% endblock body %}
+        </ul>
+      </aside>
+
     <header>
-        <h1>Our Badass Blog</h1>
+        <h1>Munir's Blog</h1>
         <nav>
             <ul>
                 <li><a href="/" title="Home">HOME</a></li>
@@ -19,7 +29,7 @@
     {% block content %}
     {% endblock content %}
     <footer>
-    By Selena and Munir
+    By Munir Ibrahim
     </footer>
 </body>
 </html>

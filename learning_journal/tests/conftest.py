@@ -59,3 +59,8 @@ def new_entry(request):
 
     request.addfinalizer(teardown)
     return add_entry
+
+
+def test_no_access_to_view(app):
+    response = app.get('/secure')
+    assert response.status_code == 403

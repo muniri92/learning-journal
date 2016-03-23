@@ -20,6 +20,8 @@ requires = [
     'psycopg2',
     'WTForms',
     'markdown',
+    'cryptacular',
+    'passlib',
 ]
 
 tests_require = ['pytest', 'pytest-watch', 'tox', 'webtest', 'pytest-cov']
