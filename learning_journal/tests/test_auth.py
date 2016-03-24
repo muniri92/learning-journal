@@ -1,49 +1,22 @@
+
 # import os
 # import pytest
 # import webtest
+# from passlib.hash import sha256_crypt
 # import main
 
-
-# # *************************************************
+# from .security import pwd_context
 
 
 # # in views.py*
-# # @view_config(route_name='secure', renderer='string', permission='templates/edit.jinja')
-# # def secure(request):
-# #     return
-
-
-# # ***************************************************
-
-# # <form action='', method='POST'>
-# #     <div>Username:<input type='text'></div>
-# #     <div>Password:<input type='password'></div>
-# #     <div></div>
-# # </form>
-
-
-# # ***************************************************
-
-# # in views.py*
-# # view for login (create a ```config.add_route('login, /login')``` in __init__)
+# # view for login (create a config.add_route('login, /login') in __init__)
 # from .security import check_pw
 # # import HTTPForbidden
 
 
-# @view_config(route_name='login', renderer='template/login.jinja2')
-# def login(request):
-#     if request.method == 'POST':
-#         username = request.params.get('username', '')
-#         password = request.params.get('password', '')
-#         if check_pw(password):
-#             headers = remember(request, username)
-#             return HTTPFound(location='/', header=header)
-#     return {}
-
-
 # # ***************************************************
 
-# # in the security.py*
+# in the security.py*
 # import os
 
 # from passlib.apps import custom_app_context as pwd_context
@@ -56,7 +29,7 @@
 
 # # ***************************************************
 
-# AUTH_DATA = {'username': 'admin', 'password': 'secret'}
+# AUTH_DATA = {'username': 'muniri', 'password': 'muniri'}
 
 
 # @pytest.fixture()
@@ -70,9 +43,8 @@
 # @pytest.fixture()
 # def auth_env():
 #     """Create was auth password in env we can use."""
-#     from .security import pwd_context
-#     os.environ['AUTH_PASSWORD'] = pwd_context.encrypt('secret')
-#     os.environ['AUTH_USERNAME'] = 'admin'
+#     os.environ['AUTH_PASSWORD'] = sha256_crypt.encrypt('muniri')
+#     os.environ['AUTH_USERNAME'] = 'muniri'
 
 
 # @pytest.fixture()
@@ -81,16 +53,17 @@
 #     app.post('/login', AUTH_DATA)
 #     return app
 
+# *********************************************
 
 # def test_no_access_to_view(app):
 #     """Test to make sure NO access if permitted with no auth."""
-#     response = app.get('/secure')
+#     response = app.get('/login')
 #     assert response.status_code == 403
 
 
 # def test_access_to_view(app):
 #     """Test to make sure the auth allows access."""
-#     response = app.get('/secure')
+#     response = app.get('/login')
 #     assert response.status_code == 200
 
 
@@ -156,6 +129,9 @@
 #             break
 #     else:
 #         assert False
+
+
+# *********************************************
 
 
 # def test_post_login_fail_bad_password(app, auth_env):

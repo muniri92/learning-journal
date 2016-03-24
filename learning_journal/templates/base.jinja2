@@ -4,32 +4,36 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
-    <link rel="stylesheet" href="../static/theme.css">
+    <link rel="stylesheet" href="../static/normalize.css">
+    <link rel="stylesheet" href="../static/skeleton.css">
+    <link rel="stylesheet" href="../static/munirs.css">
 </head>
 <body>
-
-      <aside>
-        <ul>
-        {% block body %}
-            <li><a href="{{ request.route_url('login') }}">Log In</a></li>
-            <li><a href="{{ request.route_url('logout') }}">Logout</a></li>
-        {% endblock body %}
-        </ul>
-      </aside>
-
-    <header>
-        <h1>Munir's Blog</h1>
-        <nav>
+    <section class='top_header'>
+        <nav class='nav'>
             <ul>
                 <li><a href="/" title="Home">HOME</a></li>
                 <li><a href="/write" title="New Post">NEW POST</a></li>
             </ul>
         </nav>
+
+        <aside class="login">
+            <ul>
+            {% block body %}
+                <li><a href="{{ request.route_url('login') }}">LOGIN</a></li>
+                <li><a href="{{ request.route_url('logout') }}">LOGOUT</a></li>
+            {% endblock body %}
+            </ul>
+        </aside>
+    </section>
+    <header class='header'>
+        <h1 class='title'>Dev Mcfly</h1>
     </header>
+
     {% block content %}
     {% endblock content %}
-    <footer>
-    By Munir Ibrahim
+    <footer class='footer'>
+    &copy; 2016 | Munir Ibrahim | mibrah04@gmail.com    
     </footer>
 </body>
 </html>

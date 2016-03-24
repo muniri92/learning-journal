@@ -1,7 +1,6 @@
 
 from pyramid.security import Allow, Everyone, Authenticated
 from pyramid.security import ALL_PERMISSIONS
-# from learning_journal.models import Entry
 from passlib.hash import sha256_crypt
 import os
 
@@ -13,16 +12,19 @@ def check_password(pw):
 
 
 class DefaultRoot(object):
+    """Create the DefaultRoot that is used in the __init__.py."""
+
     __acl__ = [
         (Allow, Everyone, 'view'),
         (Allow, Authenticated, ALL_PERMISSIONS),
     ]
 
-
     def __init__(self, request):
+        """Instantiate that default root."""
         self.request = request
 
 
+# from learning_journal.models import Entry
 # class EntryRoot(object):
 
 #     __name__ = 'entry'

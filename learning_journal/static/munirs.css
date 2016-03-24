@@ -1,31 +1,103 @@
-.container {
+body {
 	display: flex;
-	min-height: 100%;
 	flex-direction: column;
 }
 
-.header {
+/* TOP SECTION */
+.top_header {
 	display: flex;
 	flex-direction: row;
-}
-
-.title {
-	font-size: 30px;
 	justify-content: center;
+    align-content: center;
 }
 
-.nav {
+.top_header ul {
 	display: flex;
-	font-size: 15px;
+    align-self: center;
+}
+
+.top_header li {
+	margin: 10px 0px 10px 0px;
+    padding: 0px 10px 0px 10px;
+}
+
+/* FIX NAVIGATION CSS */
+
+nav {
+	display: flex;
 	flex-direction: row;
+	padding-top: 20px;
+} 
+
+nav li {
+	display: flex;
+	justify-content: center;
+	padding-right: 30px;
+}
+
+/* LOGIN CSS */
+
+.login {
+	display: flex;
+	flex-direction: row;
+	padding-top: 20px;
+}
+
+.login ul {
+	display: flex;
 	justify-content: flex-end;
 }
 
-.footer {
-	/*http://stackoverflow.com/questions/643879/css-to-make-html-page-footer-stay-at-bottom-of-the-page-with-a-minimum-height*/
-	clear: both;
-    position: relative;
-    z-index: 10;
-    height: 3em;
-    margin-top: -3em;
+
+/* FIX UP ALL LINKS */
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: gold;
+}
+
+
+/*.login li{*/
+	/*display: inline-flex;*/
+	/*flex-direction: row;*/
+	/*text-decoration-style: none;*/
+/*}*/
+
+/*h1 {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 100px;
+    /*width: 100px;*/
+/*    height: 900px;
+    background-image: url("../static/img3.jpeg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}*/
+
+li {
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+}    
+
+.title {
+	display: flex;
+	border: solid black 2px;
+	font-size: 50px;
+	justify-content: center;
+}
+
+/* FOOTER */
+footer {
+	position: relative;
+    color: white;
+    background-color: #444;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
 }

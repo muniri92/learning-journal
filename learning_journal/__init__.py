@@ -1,24 +1,20 @@
 
+import os
 from pyramid.config import Configurator
 from sqlalchemy import engine_from_config
 from .models import (
     DBSession,
     Base,
 )
-
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from .security import DefaultRoot
-import os
 from pyramid.authorization import ACLAuthorizationPolicy
-from pyramid.authentication import AuthTktAuthenticationPolicy
-from pyramid.config import Configurator
-
-from pyramid.view import view_config
 from passlib.hash import sha256_crypt
+from pyramid.view import view_config
 
 
 def main(global_config, **settings):
-    """This function returns a Pyramid WSGI application."""
+    """A function that returns a Pyramid WSGI application."""
     database_url = os.environ.get('DATABASE_URL', None)
     if database_url is not None:
         settings['sqlalchemy.url'] = database_url
