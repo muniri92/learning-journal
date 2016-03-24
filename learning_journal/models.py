@@ -7,7 +7,7 @@ from sqlalchemy import (
 )
 
 import datetime
-
+import markdown
 from wtforms import (
     Form,
     StringField,
@@ -37,6 +37,10 @@ class Entry(Base):
     text = Column(Unicode)
     created = Column(DateTime, default=datetime.datetime.utcnow)
 
+    @property
+    def markdown_text(self):
+        md = markdown.Markdown(safe_mode='replace', html_replacement_text='--RAW HTML NOT ALLOWED--')
+        return md.convert(self.text)
 
 class NewEntry(Form):
     """Create Form for New Entry."""
