@@ -1,5 +1,7 @@
 {% extends "base.jinja2" %}
 {% block content %}
+
+
 <ul>
 	{% if entries %}
     {% for entry in entries%}
@@ -14,4 +16,5 @@
     <p>No entries here so far</p>
     {% endif %}
 </ul>
+
 {% endblock %}
