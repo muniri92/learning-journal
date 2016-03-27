@@ -3,14 +3,14 @@ from pyramid.view import view_config, forbidden_view_config
 # from wtforms import Form, BooleanField, StringField, validators
 import pyramid.httpexceptions as ex
 
-from learning_journal.models import (
+from .models import (
     DBSession,
     Entry,
     NewEntry,
 )
 from pyramid.httpexceptions import HTTPFound
 from pyramid.security import remember, forget
-from learning_journal.security import check_password
+from .security import check_password
 
 
 @view_config(route_name='home', renderer='templates/list.jinja2',
@@ -30,27 +30,6 @@ def detail_view(request):
     if this_entry is None:
         raise ex.HTTPNotFound()
     return {'entry': this_entry}
-
-
-# @view_config(route_name='add_entry', renderer='json', xhr=True)
-# def ajax_add_new(request):
-#     """"""
-#     import pdb; pdb.set_trace()
-#     my_entries = Entry.by_author(request.user)
-#     return {'entries': my_entries.all()}
-#     return {'form': form}
-
-
-# @view_config(route_name='add_entry', renderer='json', xhr=True)
-# def add_new(request):
-#     """Add new entry."""
-#     form = NewEntry(request.POST)
-#     if request.POST and form.validate():
-#         entry = Entry(title=form.title.data, text=form.text.data)
-#         DBSession.add(entry)
-#         DBSession.flush()
-#         return ex.HTTPFound(request.route_url('entry', entry=entry.id))
-#     return {'form': form}
 
 
 @view_config(route_name='add_entry', renderer='templates/add.jinja2',
