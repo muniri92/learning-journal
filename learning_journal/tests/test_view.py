@@ -139,22 +139,6 @@ def test_edit(dbtransaction, app, new_entry, auth_env):
     assert results.count() == 1
 
 
-# def test_add(dbtransaction, app, auth_env):
-#     """Test that we can add to the entry."""
-#     results = DBSession.query(Entry).filter(
-#         Entry.title == 'title' and Entry.text == 'text')
-#     assert results.count() == 0
-#     entry_dict = {'title': 'title',
-#                   'text': 'text',
-#                   'username': 'muniri',
-#                   'password': 'muniri'
-#                   }
-#     app.post('/write', params=entry_dict, status='3*')
-#     results = DBSession.query(Entry).filter(
-#         Entry.title == 'title' and Entry.text == 'text')
-#     assert results.count() == 1
-
-
 # TEST FUNCTIONALITY
 # ************************************************************
 
