@@ -37,10 +37,24 @@ class Entry(Base):
     text = Column(Unicode)
     created = Column(DateTime, default=datetime.datetime.utcnow)
 
+    def __json__(self, request):
+        """Make a json."""
+        return {
+            'id': self.id,
+            'title': self.title,
+            'text': self.text,
+            'created': self.created.isoformat(),
+        }
+
+    def to_json(self, request=None):
+        return self.__json__(request)
+
     @property
     def markdown_text(self):
+        """Markdown."""
         md = markdown.Markdown(safe_mode='replace', html_replacement_text='--RAW HTML NOT ALLOWED--')
         return md.convert(self.text)
+
 
 class NewEntry(Form):
     """Create Form for New Entry."""
